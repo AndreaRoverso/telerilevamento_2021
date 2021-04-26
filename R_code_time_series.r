@@ -54,7 +54,7 @@ melt
 levelplot(melt)
 
 melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
-clb <- colorRampPalette(c("blue", "white", "red")(100)
+clb <- colorRampPalette(c("blue", "white", "red")) (100)
 plot(melt_amount, col=clb)
 melt_amount
 levelplot(melt_amount, col.regions=clb)
