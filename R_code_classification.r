@@ -20,3 +20,9 @@ plot(soc20$map)
 sun <-brick("sun.jpg")
 sunc <- unsuperClass (sun, nClasses=3)
 plot(sunc$map)
+
+#download Solar Orbiter data and proceed further
+#Grand Canyon (dolansprings_oli_2013088_canyon_lrg)
+
+gc <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
+plotRGB(gc, r=1, g=2, b=3, stretch="lin")
