@@ -1,5 +1,8 @@
 library(raster)
 library(RStoolbox)
+install.packages("rasterdiv")
+library(rasterdiv) # for the worldwide NDVI
+library(rasterVis)
 setwd("C:/lab/") 
 
 defor1 <- brick ("defor1.jpg")
@@ -52,3 +55,14 @@ plot(vi, col=cl)
 
 vi2 <- spectralIndices(defor2, green = 3, red = 2, nir = 1)
 plot(vi2, col=cl)
+
+# worldwide NDVI
+ b
+plot(copNDVI)
+
+#Pixels with values 253,254 and 255 (water) will be set as NA's.
+
+copNDVI <- reclassify(copNDVI, cbind(253:255, NA))
+
+#rasterVis package needed:
+levelplot(copNDVI)
