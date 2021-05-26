@@ -43,3 +43,25 @@ plot(d2c$map)
 
 d2c3 <- unsuperClass(defor2, nClasses=3)
 plot(d2c3$map)
+
+#frequencies
+freq(d1c$map)
+# value  count
+# [1,]     1 306651
+# [2,]     2  34641
+
+s1 <- 306651+34641
+prop1 <- freq(d1c$map)/s1
+#prop forest: 0.8985004
+#prop agriculture: 0.1014996
+
+s2 <- 342726
+prop2 <- freq(d2c$map)/s2
+#prop forest: 0.5198176
+#prop agriculture: 0.4801824
+
+#build a dataframe
+cover <- c("Forest","Agriculture")
+percent_1992 <- c(89.85, 10.15)
+
+
