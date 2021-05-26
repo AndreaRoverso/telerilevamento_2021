@@ -63,5 +63,13 @@ prop2 <- freq(d2c$map)/s2
 #build a dataframe
 cover <- c("Forest","Agriculture")
 percent_1992 <- c(89.85, 10.15)
+percent_2006 <- c(51.98, 48.02)
 
+percentages <- data.frame(cover, percent_1992, percent_2006)
+percentages
 
+#let's plot them!
+p1 <- ggplot(percentages, aes(x=cover, y=percent_1992, color=cover)) + geom_bar(stat="identity", fill="white")
+p2 <- ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(stat="identity", fill="white")
+
+grid.arrange(p1, p2, nrow=1)
