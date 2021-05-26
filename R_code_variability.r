@@ -21,7 +21,14 @@ plot(ndvi)
 cl <- colorRampPalette(c("black","white","red","magenta","green"))(100)
 plot(ndvi,col=cl)
 
-ndvisd3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3, fun=sd)
+ndvisd3 <- focal(ndvi, w=matrix(1/9, nrow=3, ncol=3), fun=sd)
 plot(ndvisd3)
+clsd <- colorRampPalette(c('blue','green','pink','magenta','orange','brown','red','yellow'))(100) #
+plot(ndvisd3, col=clsd)
 
-                
+#PCA                
+sentpca <- rasterPCA(sent)
+plot(sentpca$map)
+
+summary(sentpca$model)
+#the first PC contains 67.36804% of the original information
