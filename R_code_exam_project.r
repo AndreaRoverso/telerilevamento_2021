@@ -13,34 +13,6 @@ library(rgdal)
 
 setwd("C:/lab/exam") 
 
-arals_2000 <- brick("aralsea_2000.jpg")
-
-arals_2006 <- brick("aralsea_2006.jpg")
-
-arals_2012 <- brick("aralsea_2012.jpg")
-
-arals_2018 <- brick("aralsea_2018.jpg")
-
-# Funzione plotRGB
-par(mfrow=c(2,2))
-plotRGB(arals_2000, r=1, g=2, b=3, stretch="lin") 
-plotRGB(arals_2006, r=1, g=2, b=3, stretch="lin")
-plotRGB(arals_2012, r=1, g=2, b=3, stretch="lin") 
-plotRGB(arals_2018, r=1, g=2, b=3, stretch="lin") 
-
-# Upload with function raster
-aral_2000_r <- raster("aralsea_2000.jpg")
-aral_2006_r <- raster("aralsea_2006.jpg")
-aral_2012_r <- raster("aralsea_2012.jpg")
-aral_2018_r <- raster("aralsea_2018.jpg") 
-
-col <- colorRampPalette(c("green","yellow","red","blue"))(100)
-
-aralsea <- stack(aral_2000_r,aral_2006_r,aral_2012_r,aral_2018_r) 
-
-levelplot(aralsea,col.regions=col, main="ARAL SEA", names.attr=c("Situazione nel 2000","Situazione nel 2006","Situazione nel 2012","Situazione nel 2018"))
-
-
 # importo i file 
 # creo una lista di file con list.files per la funzione lapply 
 # arallist <- list.files(pattern="aralsea") 
@@ -57,10 +29,37 @@ levelplot(aralsea,col.regions=col, main="ARAL SEA", names.attr=c("Situazione nel
 # plotto in scale di grigio diverse, coordinate x e y e qualità immagine superiore
 # ggRGB(TGr, r=1, g=2, b=3, stretch="lin")
 
+
+arals2000 <- brick("aralsea2000.jpg")
+arals2006 <- brick("aralsea2006.jpg")
+arals2012 <- brick("aralsea2012.jpg")
+arals2018 <- brick("aralsea2018.jpg")
+
+# Funzione plotRGB
+par(mfrow=c(2,2))
+plotRGB(arals2000, r=1, g=2, b=3, stretch="lin") 
+plotRGB(arals2006, r=1, g=2, b=3, stretch="lin")
+plotRGB(arals2012, r=1, g=2, b=3, stretch="lin") 
+plotRGB(arals2018, r=1, g=2, b=3, stretch="lin") 
+
+# Upload with function raster
+aral2000r <- raster("aralsea2000.jpg")
+aral2006r <- raster("aralsea2006.jpg")
+aral2012r <- raster("aralsea2012.jpg")
+aral2018r <- raster("aralsea2018.jpg") 
+
+
+col <- colorRampPalette(c("green","yellow","pink","blue"))(100)
+
+aralsea <- stack(aral2000r,aral2006r,aral2012r,aral2018r) 
+
+levelplot(aralsea,col.regions=col, main="LAGO D'ARAL", names.attr=c("Situazione nel 2000","Situazione nel 2006","Situazione nel 2012","Situazione nel 2018"))
+
+
 # Funzione levelplot: disegna più grafici di colore falso con una singola legenda
 # levelplot(TGr)
 # colorRampPalette (NON SI USA SU RGB)
-col<-colorRampPalette(c("white","dark green","yellow","red","black"))(100)
+# col2<-colorRampPalette(c("white","dark green","yellow","red","black"))(100)
 
 # Nuovo levelplot col cambio di colori, nome e titolo
 # levelplot(TGr,col.regions=col, main="Shinking Aral Sea", names.attr=c("2000","2006", "2012", "2018"))
@@ -77,8 +76,8 @@ pairs(aralsea, main="Comparazione con la funzione pairs")
 
 # PCA (principal component analysis)
 # PCA 2000
-aralsea2000_pca <- rasterPCA(arals_2000)
-summary(aralsea2000_pca$model)
+aralsea2000pca <- rasterPCA(arals2000)
+summary(aralsea2000pca$model)
 
 # Risultati 
 # Importance of components:
@@ -87,14 +86,14 @@ summary(aralsea2000_pca$model)
 # Proportion of Variance  0.9570181  0.02462455  0.01835734
 # Cumulative Proportion   0.9570181  0.98164266  1.00000000
 
-plotRGB(aralsea2000_pca$map,r=1,g=3,b=2, stretch="hist")
+plotRGB(aralsea2000pca$map,r=1,g=3,b=2, stretch="hist")
 # Per vedere il grafico
-plot(aralsea2000_pca$model) 
+plot(aralsea2000pca$model) 
 
 
 # PCA 2006
-aralsea2006_pca <- rasterPCA(arals_2006)
-summary(aralsea2006_pca$model)
+aralsea2006pca <- rasterPCA(arals2006)
+summary(aralsea2006pca$model)
 
 # Risultati 
 # Importance of components:
@@ -103,14 +102,14 @@ summary(aralsea2006_pca$model)
 # Proportion of Variance  0.9419963  0.04830809 0.009695614
 # Cumulative Proportion   0.9419963  0.99030439 1.000000000
 
-plotRGB(aralsea2006_pca$map,r=1,g=3,b=2, stretch="hist")
+plotRGB(aralsea2006pca$map,r=1,g=3,b=2, stretch="hist")
 # Per vedere il grafico
-plot(aralsea2006_pca$model) 
+plot(aralsea2006pca$model) 
 
 
 # PCA 2012
-aralsea2012_pca <- rasterPCA(arals_2012)
-summary(aralsea2012_pca$model)
+aralsea2012pca <- rasterPCA(arals2012)
+summary(aralsea2012pca$model)
 
 # Risultati 
 # Importance of components:
@@ -119,15 +118,15 @@ summary(aralsea2012_pca$model)
 # Proportion of Variance  0.9453124  0.04726599 0.007421589
 # Cumulative Proportion   0.9453124  0.99257841 1.000000000
 
-plotRGB(aralsea2012_pca$map,r=1,g=3,b=2, stretch="hist")
+plotRGB(aralsea2012pca$map,r=1,g=3,b=2, stretch="hist")
 # Per vedere il grafico
-plot(aralsea2012_pca$model) 
+plot(aralsea2012pca$model) 
 
 
 
 # PCA 2018
-aralsea2018_pca <- rasterPCA(arals_2018)
-summary(aralsea2018_pca$model)
+aralsea2018pca <- rasterPCA(arals2018)
+summary(aralsea2018pca$model)
 
 # Risultati 
 # Importance of components:
@@ -136,26 +135,58 @@ summary(aralsea2018_pca$model)
 # Proportion of Variance  0.9318901  0.05808549 0.01002437
 # Cumulative Proportion   0.9318901  0.98997563 1.00000000
 
-plotRGB(aralsea2018_pca$map,r=1,g=3,b=2, stretch="hist")
+plotRGB(aralsea2018pca$map,r=1,g=3,b=2, stretch="hist")
 # Per vedere il grafico
-plot(aralsea2018_pca$model) 
+plot(aralsea2018pca$model) 
 
 # Comparazione tra le varie PCA
 par(mfrow=c(2,2))
-plotRGB(aralsea2000_pca$map,r=1,g=3,b=2, stretch="Hist")
-plotRGB(aralsea2006_pca$map,r=1,g=3,b=2, stretch="Hist")
-plotRGB(aralsea2012_pca$map,r=1,g=3,b=2, stretch="Hist")
-plotRGB(aralsea2018_pca$map,r=1,g=3,b=2, stretch="Hist")
+plotRGB(aralsea2000pca$map,r=1,g=3,b=2, stretch="Hist")
+plotRGB(aralsea2006pca$map,r=1,g=3,b=2, stretch="Hist")
+plotRGB(aralsea2012pca$map,r=1,g=3,b=2, stretch="Hist")
+plotRGB(aralsea2018pca$map,r=1,g=3,b=2, stretch="Hist")
 
 # Multiframe con ggplot2
-as2000 <- ggRGB(aralsea2000_pca$map,r=1,g=3,b=2, stretch="Hist")
-as2006 <- ggRGB(aralsea2006_pca$map,r=1,g=3,b=2, stretch="Hist")
-as2012 <- ggRGB(aralsea2012_pca$map,r=1,g=3,b=2, stretch="Hist")
-as2018 <- ggRGB(aralsea2018_pca$map,r=1,g=3,b=2, stretch="Hist")
+as2000 <- ggRGB(aralsea2000pca$map,r=1,g=3,b=2, stretch="Hist")
+as2006 <- ggRGB(aralsea2006pca$map,r=1,g=3,b=2, stretch="Hist")
+as2012 <- ggRGB(aralsea2012pca$map,r=1,g=3,b=2, stretch="Hist")
+as2018 <- ggRGB(aralsea2018pca$map,r=1,g=3,b=2, stretch="Hist")
 grid.arrange(as2000, as2006,as2012,as2018, nrow=2)
+
+C <- grid.arrange(as2000, as2006, as2012, as2018, nrow=2)
+ggsave("grid.arrange.jpg",C) 
+# bisogna specificare cosa salvare esplicitamente, altrimenti salva solo l'ultimo grafico non l'intero grid.arrange
+
+
+
 
 ##########################################################
 
+# Spectral Indices
+
+# La funzione spectralIndices permette di calcolare tutti gli indici
+# b1=NIR, b2=rosso, b3=verde
+# Immagine del Lago Aral nel 2000 
+spAs2000 <- spectralIndices(arals2000, green = 3, red = 2, nir = 1) 
+# Cambio i colori con colorRampPalette
+cl <- colorRampPalette(c('pink','light blue','red','yellow'))(100)
+# Nuovo plot col cambio di colori
+plot(spAs2000, col=cl)
+
+# Immagine del Lago Aral nel 2006
+spAs2006 <- spectralIndices(arals2006, green = 3, red = 2, nir = 1) 
+plot(spAs2006, col=cl)
+
+# Immagine del Lago Aral nel 2012
+spAs2012 <- spectralIndices(arals2012, green = 3, red = 2, nir = 1) 
+plot(spAs2012, col=cl)
+
+# Immagine del Lago Aral nel 2018
+spAs2018 <- spectralIndices(arals2018, green = 3, red = 2, nir = 1) 
+plot(spAs2018, col=cl)
+
+
+#################################################################################
 
 # Firme spettrali
 
@@ -192,6 +223,14 @@ aral_2018_p2 <- c(117,82,62)
 aral_2018_p3 <- c(135,117,97)
 
 spectralss <- data.frame(band,aral_2000_p1,aral_2000_p2,aral_2000_p3,aral_2018_p1,aral_2018_p2,aral_2018_p3)
+
+spectralss
+
+#  band aral_2000_p1 aral_2000_p2 aral_2000_p3 aral_2018_p1 aral_2018_p2 aral_2018_p3
+# 1    1          162          155          157          167          117          135
+# 2    2          146          143          131          148           82          117
+# 3    3          110          119           98          116           62           97
+
 
 # Plot
 ggplot(spectralss, aes(x=band)) +
