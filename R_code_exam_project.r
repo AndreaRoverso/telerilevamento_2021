@@ -214,9 +214,9 @@ spectralss
 
 # Plotto con ggplot con un colore differente per ogni risultato
 ggplot(spectralss, aes(x=band)) +
-geom_line(aes(y = aral2000p1 ), color="red") +
-geom_line(aes(y = aral2000p2), color="green") +
-geom_line(aes(y = aral2000p3), color="purple") +
+geom_line(aes(y = aral2000p1 ), linetype="dotdash", color="red", size=2) +
+geom_line(aes(y = aral2000p2), linetype="dotdash", color="green", size=2) +
+geom_line(aes(y = aral2000p3), linetype="dotdash", color="purple", size=2) +
 geom_line(aes(y = aral2018p1), color="black") +
 geom_line(aes(y = aral2018p2), color="blue") +
 geom_line(aes(y = aral2018p3), color="pink") +
