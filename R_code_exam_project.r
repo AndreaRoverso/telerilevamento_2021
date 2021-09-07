@@ -190,55 +190,55 @@ plot(spAs2018, col=cl)
 
 # Firme spettrali
 
-plotRGB(arals_2000, r=1, g=2, b=3, stretch="lin") 
+plotRGB(arals2000, r=1, g=2, b=3, stretch="lin") 
 
 # Bisogna avere la mappa fatta con plotRGB aperta sotto
 # Funzione: click, usa immagine plotRGB per creare le firme spettrali 
-click(arals_2000, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
+click(arals2000, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
 
-#      x     y   cell aralsea_2000.1 aralsea_2000.2 aralsea_2000.3
-# 1 323.5 454.5 191124            162            146            110
-#      x     y   cell aralsea_2000.1 aralsea_2000.2 aralsea_2000.3
-# 1 300.5 157.5 404941            155            143            119
-#      x     y   cell aralsea_2000.1 aralsea_2000.2 aralsea_2000.3
-# 1 124.5 350.5 265805            157            131             98
+#      x     y  cell aralsea2000.1 aralsea2000.2 aralsea2000.3
+# 1 451.5 600.5 86132             2            19            11
+#      x     y   cell aralsea2000.1 aralsea2000.2 aralsea2000.3
+# 1 154.5 235.5 348635             5            58            32
+#      x     y   cell aralsea2000.1 aralsea2000.2 aralsea2000.3
+# 1 391.5 273.5 321512           101           127            56
 
-plotRGB(arals_2018, r=1, g=2, b=3, stretch="lin") 
-click(arals_2018, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
+plotRGB(arals2018, r=1, g=2, b=3, stretch="lin") 
+click(arals2018, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
 
-#      x     y   cell aralsea_2018.1 aralsea_2018.2 aralsea_2018.3
-# 1 318.5 441.5 200479            167            148            116
-#      x     y   cell aralsea_2018.1 aralsea_2018.2 aralsea_2018.3
-# 1 280.5 103.5 443801            117             82             62
-#      x     y   cell aralsea_2018.1 aralsea_2018.2 aralsea_2018.3
-# 1 104.5 311.5 293865            135            117             97
+#      x     y  cell aralsea2018.1 aralsea2018.2 aralsea2018.3
+# 1 460.5 591.5 92621            55           107            85
+#      x     y   cell aralsea2018.1 aralsea2018.2 aralsea2018.3
+# 1 421.5 235.5 348902           162           149           130
+#      x     y   cell aralsea2018.1 aralsea2018.2 aralsea2018.3
+# 1 157.5 223.5 357278           169           160           145
 
 # Definire le colonne del dataset
 band <- c(1,2,3)
-aral_2000_p1 <- c(162,146,110)
-aral_2000_p2 <- c(155,143,119)
-aral_2000_p3 <- c(157,131,98)
-aral_2018_p1 <- c(167,148,116)
-aral_2018_p2 <- c(117,82,62)
-aral_2018_p3 <- c(135,117,97)
+aral2000p1 <- c(2,19,11)
+aral2000p2 <- c(5,58,32)
+aral2000p3 <- c(101,127,56)
+aral2018p1 <- c(55,107,85)
+aral2018p2 <- c(162,149,130)
+aral2018p3 <- c(169,160,145)
 
-spectralss <- data.frame(band,aral_2000_p1,aral_2000_p2,aral_2000_p3,aral_2018_p1,aral_2018_p2,aral_2018_p3)
+spectralss <- data.frame(band,aral2000p1,aral2000p2,aral2000p3,aral2018p1,aral2018p2,aral2018p3)
 
 spectralss
 
-#  band aral_2000_p1 aral_2000_p2 aral_2000_p3 aral_2018_p1 aral_2018_p2 aral_2018_p3
-# 1    1          162          155          157          167          117          135
-# 2    2          146          143          131          148           82          117
-# 3    3          110          119           98          116           62           97
+#  band   aral2000p1  aral2000p2  aral2000p3  aral2018p1  aral2018p2  aral2018p3
+#  1      2           5           101         55          162         169
+#  2      19          58          127         107         149         160
+#  3      11          32          56          85          130         145
 
 
 # Plot
 ggplot(spectralss, aes(x=band)) +
-geom_line(aes(y = aral_2000_p1 ), color="red") +
-geom_line(aes(y = aral_2000_p2), color="green") +
-geom_line(aes(y = aral_2000_p3), color="yellow") +
-geom_line(aes(y = aral_2018_p1), color="black") +
-geom_line(aes(y = aral_2018_p2), color="blue") +
-geom_line(aes(y = aral_2018_p3), color="pink") +
+geom_line(aes(y = aral2000p1 ), color="red") +
+geom_line(aes(y = aral2000p2), color="green") +
+geom_line(aes(y = aral2000p3), color="purple") +
+geom_line(aes(y = aral2018p1), color="black") +
+geom_line(aes(y = aral2018p2), color="blue") +
+geom_line(aes(y = aral2018p3), color="pink") +
 
 labs(x="band", y="reflectance")
